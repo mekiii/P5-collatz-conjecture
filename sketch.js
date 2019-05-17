@@ -55,11 +55,11 @@ function collatz(maxLevels){
 console.log(collatzify(15));
 
 function draw() {
-  if (row < 20) {
+  if (row < 40) {
     fill(0);
     translate(10,50);
     row = sequence.length - 1;
-    y = row * 50;
+    y = row * 20;
     level = [];
     sequence[row].forEach((num) => {
       //draw current sequence point;
@@ -67,21 +67,23 @@ function draw() {
       if (num % 3 == 1 && num % 2 == 0) {
         //ellipse((num - 1) / 3, y, 5, 5);
         let oddFollower = (num - 1) / 3;
-        line(num, y - 50, oddFollower, y);
         stroke(0);
-        textSize(15);
+        textSize(12);
         text(oddFollower, oddFollower, y);
+        stroke(100);
+        line(num, y - 20, oddFollower, y);
         ellipse(oddFollower, y, 1, 1);
         level.push(oddFollower);
 
       }
       //Even number follows
       let evenFollower = num * 2;
-      ellipse(evenFollower, y, 1, 1);
-      line(num, y - 50, evenFollower, y);
       stroke(0);
-      textSize(15);
+      textSize(12);
       text(evenFollower, evenFollower, y);
+      stroke(100);
+      ellipse(evenFollower, y, 1, 1);
+      line(num, y - 20, evenFollower, y);
       level.push(evenFollower);
       //ellipse(2 * num, y, 5, 5);
     })
