@@ -1,5 +1,5 @@
 let yDist = 25;
-let xDist = 40;
+let xDist = 60;
 let startingPoint;
 let isFirstCollatz;
 let withText;
@@ -12,7 +12,7 @@ function setup() {
   frameRate(5);
   background(255);
   colorMode(RGB, 255, 255, 255, 1);
-  startingPoint = createVector(10, 10);
+  startingPoint = createVector(1, 1);
   isFirstCollatz = true;
   withText = false;
   counter = 0;
@@ -60,13 +60,13 @@ function drawFollower(num, numPos) {
   let follower = calcCollatzFollower(num);
   //first number is always even
   let evenFollower = follower[0];
-  let evenPos = createVector(numPos.x + xDist, numPos.y + yDist);
+  let evenPos = createVector(numPos.x + xDist + variance, numPos.y + yDist + variance);
   if (withText) {
     fill(0, 0, 0, 1);
     textSize(12);
     text(evenFollower, evenPos.x, evenPos.y);
   }
-  stroke(0, 0, 0, 0.3);
+  stroke(0, 0, 0, 0.1);
   strokeWeight(3);
   line(numPos.x, numPos.y, evenPos.x, evenPos.y);
   if (follower[1]) {
@@ -80,8 +80,8 @@ function drawFollower(num, numPos) {
       textSize(12);
       text(oddFollower, oddPos.x, oddPos.y);
     }
-    stroke(0, 0, 0, 0.3);
-    strokeWeight(2);
+    stroke(noise(numPos.x)*255, noise(numPos.y)*255, noise(oddPos.y)*255, 0.4);
+    strokeWeight(3);
     line(numPos.x, numPos.y, oddPos.x, oddPos.y);
     return [evenFollower, evenPos, oddFollower, oddPos];
   }
@@ -111,7 +111,7 @@ function draw() {
         }
       })
       pos = temp;
-      variance+=0.5;
+      variance++;
       yDist+=0.5;
     } else {
       background(255,0.9);
@@ -125,62 +125,3 @@ function draw() {
   }
   counter++;
 }
-
-
-/*
-    if (pos.length ){
-      let evenFollower = pos[0][0];
-      let evenPos = pos [0][1];
-      pos.push(drawFollower(evenFollower, evenPos));
-      let oddFollower = pos[1][2];
-      let oddPos = pos [3];
-      pos = drawFollower(oddFollower, oddPos)
-    }
-    else {
-      let evenFollower = pos[0];
-      let evenPos = pos [1];
-      pos = drawFollower(evenFollower, evenPos);
-    }
-  }
-  
-}
-*/
-
-/*
-function draw() {
-  if (row < 40) {
-    fill(0);
-    translate(10,50);
-    row = sequence.length - 1;
-    y = row * 20;
-    level = [];
-    sequence[row].forEach((num) => {
-      //draw current sequence point;
-      //If odd number follows
-      if (num % 3 == 1 && num % 2 == 0) {
-        //ellipse((num - 1) / 3, y, 5, 5);
-        let oddFollower = (num - 1) / 3;
-        stroke(0);
-        textSize(12);
-        text(oddFollower, oddFollower, y);
-        stroke(100);
-        line(num, y - 20, oddFollower, y);
-        ellipse(oddFollower, y, 1, 1);
-        level.push(oddFollower);
-
-      }
-      //Even number follows
-      let evenFollower = num * 2;
-      stroke(0);
-      textSize(12);
-      text(evenFollower, evenFollower, y);
-      stroke(100);
-      ellipse(evenFollower, y, 1, 1);
-      line(num, y - 20, evenFollower, y);
-      level.push(evenFollower);
-      //ellipse(2 * num, y, 5, 5);
-    })
-    sequence.push(level);
-
-  }
-}*/
