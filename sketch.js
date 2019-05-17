@@ -1,25 +1,32 @@
 let step;
+let sequence = [
+  [1]
+];
+let isLerping = false;
+let level, y, lerpingy, lerpingx1, lerpingx2;
+let row = 0;
 
 function setup() {
   step = 1;
   createCanvas(windowWidth, windowHeight);
   frameRate(5);
+  background(255);
+  lerpingy = 0;
 }
 
 function collatzify(maxLevel) {
-  let sequence = [[1]];
+  let sequence = [
+    [1]
+  ];
   for (let i = 0; i < maxLevel; i++) {
     let level = [];
-    let y = i*15;
     sequence[i].forEach((num) => {
       //If odd number follows
       if (num % 3 == 1 && num % 2 == 0) {
-        ellipse((num - 1) / 3,y, 5,5);
         level.push((num - 1) / 3);
       }
       //Even number follows
       level.push(2 * num);
-      ellipse(2 * num,y, 5,5);
     })
     sequence.push(level);
   }
@@ -48,9 +55,39 @@ function collatz(maxLevels){
 console.log(collatzify(15));
 
 function draw() {
-background(255);
-fill(0);
-collatzify(step);
-step += 1;
-console.log("Du bist süß!");
+  if (row < 20) {
+    fill(0);
+    translate(10,50);
+    row = sequence.length - 1;
+    y = row * 50;
+    level = [];
+    sequence[row].forEach((num) => {
+      //draw current sequence point;
+      //If odd number follows
+      if (num % 3 == 1 && num % 2 == 0) {
+        //ellipse((num - 1) / 3, y, 5, 5);
+        let oddFollower = (num - 1) / 3;
+        line(num, y - 50, oddFollower, y);
+        stroke(0);
+        textSize(15);
+        text(oddFollower, oddFollower, y);
+        ellipse(oddFollower, y, 1, 1);
+        level.push(oddFollower);
+
+      }
+      //Even number follows
+      let evenFollower = num * 2;
+      ellipse(evenFollower, y, 1, 1);
+      line(num, y - 50, evenFollower, y);
+      stroke(0);
+      textSize(15);
+      text(evenFollower, evenFollower, y);
+      level.push(evenFollower);
+      //ellipse(2 * num, y, 5, 5);
+    })
+    sequence.push(level);
+
+  }
+
+
 }
