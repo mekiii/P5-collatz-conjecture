@@ -73,7 +73,7 @@ function drawFollower(num, numPos) {
   let _x = translatedPosX * cos(angleEven) - translatedPosY * sin(angleEven);
   let _y = translatedPosX * sin(angleEven) + translatedPosY * cos(angleEven);
   evenPos.x = _x + numPos.x + yDist*2;
-  evenPos.y = _y + numPos.y;
+  evenPos.y = _y + numPos.y ;
   //let evenPos = createVector(numPos.x + xDist + variance, numPos.y + yDist + variance);
   stroke(0, 0, 0, 0.5);
   strokeWeight(2);
