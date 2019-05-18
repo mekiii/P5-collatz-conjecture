@@ -12,8 +12,8 @@ let tSize;
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  frameRate(20);
+  createCanvas(windowWidth*2, windowHeight);
+  frameRate(15);
   background(255);
   colorMode(RGB, 255, 255, 255, 1);
   startingPoint = createVector(1, windowHeight/2);
@@ -115,7 +115,7 @@ function drawFollower(num, numPos) {
 
 
 function draw() {
-  background(255, 0.08);
+  background(255, 0.06);
   if (isFirstCollatz) {
     pos.push(drawFollower(1, startingPoint));
     isFirstCollatz = false;
@@ -141,7 +141,7 @@ function draw() {
       yDist += 3;
       tSize += 0.1;
     } else {
-      background(255, 0.9);
+      background(255, 0.6);
       isFirstCollatz = true;
       counter = -1;
       pos = [];
