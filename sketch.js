@@ -9,7 +9,7 @@ let variance;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(5);
+  frameRate(10);
   background(255);
   colorMode(RGB, 255, 255, 255, 1);
   startingPoint = createVector(1, 1);
