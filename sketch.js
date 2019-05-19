@@ -14,8 +14,9 @@ let tSize;
 function setup() {
   createCanvas(windowWidth*2, windowHeight);
   frameRate(15);
-  background(255);
   colorMode(RGB, 255, 255, 255, 1);
+
+  background(221,226,218,1);
   startingPoint = createVector(1, windowHeight/2);
   isFirstCollatz = true;
   withText = true;
@@ -75,12 +76,12 @@ function drawFollower(num, numPos) {
   evenPos.x = _x + numPos.x + yDist*2;
   evenPos.y = _y + numPos.y ;
   //let evenPos = createVector(numPos.x + xDist + variance, numPos.y + yDist + variance);
-  stroke(0, 0, 0, 0.5);
-  strokeWeight(2);
+  stroke(19,37,106, 0.4);
+  strokeWeight(1);
   line(numPos.x, numPos.y, evenPos.x, evenPos.y);
   if (withText) {
     noStroke();
-    fill(0, 0, 0, 0.4);
+    fill(19,37,106, 0.4);
     textSize(tSize);
     text(evenFollower, evenPos.x, evenPos.y);
   }
@@ -97,12 +98,12 @@ function drawFollower(num, numPos) {
     oddPos.x = sin(numPos.x)*_x + numPos.x ;
     oddPos.y = sin(numPos.y)*_y + numPos.y ;
     //let oddPos = createVector(numPos.x - xDist, noise(random(numPos.y - variance, numPos.y + variance)) * 1.5 * (numPos.y + yDist));
-    stroke(0, 0,0, 0.4);
-    strokeWeight(5);
+    stroke(19,37,106, 0.4);
+    strokeWeight(1);
     line(numPos.x, numPos.y, oddPos.x, oddPos.y);
     if (withText) {
       noStroke();
-      fill(noise(numPos.x) * 255, noise(numPos.y) * 255, 255, 0.7);
+      fill(19,37,106, 0.7);
       textSize(tSize + 4);
       text(oddFollower, oddPos.x, oddPos.y);
     }
@@ -115,7 +116,7 @@ function drawFollower(num, numPos) {
 
 
 function draw() {
-  background(255, 0.06);
+  background(221,226,218,0.05);
   if (isFirstCollatz) {
     pos.push(drawFollower(1, startingPoint));
     isFirstCollatz = false;
@@ -141,7 +142,7 @@ function draw() {
       yDist += 3;
       tSize += 0.1;
     } else {
-      background(255, 0.6);
+      background(221,226,218,0.6);
       isFirstCollatz = true;
       counter = -1;
       pos = [];
