@@ -1,5 +1,5 @@
 let yDist = 25;
-let xDist = 60;
+let xDist = 65;
 let startingPoint;
 let isFirstCollatz;
 let withText;
@@ -10,8 +10,8 @@ let variance;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(10);
-  background(255);
   colorMode(RGB, 255, 255, 255, 1);
+  background(238,236, 215,1);
   startingPoint = createVector(1, 1);
   isFirstCollatz = true;
   withText = false;
@@ -66,8 +66,8 @@ function drawFollower(num, numPos) {
     textSize(12);
     text(evenFollower, evenPos.x, evenPos.y);
   }
-  stroke(0, 0, 0, 0.1);
-  strokeWeight(3);
+  stroke(125, 184, 131, 0.25);
+  strokeWeight(2);
   line(numPos.x, numPos.y, evenPos.x, evenPos.y);
   if (follower[1]) {
     //second number is odd
@@ -80,8 +80,8 @@ function drawFollower(num, numPos) {
       textSize(12);
       text(oddFollower, oddPos.x, oddPos.y);
     }
-    stroke(noise(numPos.x)*255, noise(numPos.y)*255, noise(oddPos.y)*255, 0.4);
-    strokeWeight(3);
+    stroke(255, 205, noise(oddPos.y)*255, 0.4);
+    strokeWeight(30);
     line(numPos.x, numPos.y, oddPos.x, oddPos.y);
     return [evenFollower, evenPos, oddFollower, oddPos];
   }
@@ -114,7 +114,7 @@ function draw() {
       variance++;
       yDist+=0.5;
     } else {
-      background(255,0.9);
+      background(238,236, 215,1);
       isFirstCollatz = true;
       counter = -1;
       pos = [];
