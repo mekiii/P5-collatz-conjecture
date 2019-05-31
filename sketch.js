@@ -38,8 +38,8 @@ class collatzFollower {
 
   calcPosition(isOdd, sprePos) {
     if (isOdd) {
-      this.x = 1.4*(sprePos.x + 50);
-      this.y = 1.2*(sprePos.y + 50);
+      this.x = 1.2*(sprePos.x + 90);
+      this.y = sprePos.y - 120;
       return createVector(this.x, this.y);
     } else {
       this.x = sprePos.x + this.radius*cos(this.angle);
@@ -69,7 +69,7 @@ class collatzFollower {
       let scolor = color(243, 179, 83, 0.3);
       stroke(scolor);
       strokeWeight(1);
-      if (abs(this.tempPos.x - this.position.odd.x) > 0.05) {
+      if (abs(this.tempPos.x - this.position.odd.x) > 0.1) {
         this.tempPos.x = lerp(this.sprePos.x, this.position.odd.x, this.lerpCounter);
         this.tempPos.y = lerp(this.sprePos.y, this.position.odd.y, this.lerpCounter);
         line(this.sprePos.x, this.sprePos.y, this.tempPos.x, this.tempPos.y);
@@ -98,7 +98,7 @@ function reset() {
   xDistOdd = 25;
   angleEven = 0;
   angleOdd = 0;
-  startingPoint = createVector(50, 50);
+  startingPoint = createVector(50, windowHeight - 150);
   tSize = 8;
   withText = false;
 }
@@ -113,9 +113,9 @@ function setup() {
       followers.push(new collatzFollower(1, startingPoint, i,i));
     } else {
       let predecessor = followers[i - 1];
-      followers.push(new collatzFollower(predecessor.even, predecessor.position.even, 20, 10*i));
+      followers.push(new collatzFollower(predecessor.even, predecessor.position.even, 30, 10*i));
       if (predecessor.hasOddFollower) {
-        followers.push(new collatzFollower(predecessor.odd, predecessor.position.odd, 20, 10*i));
+        followers.push(new collatzFollower(predecessor.odd, predecessor.position.odd, 30, 10*i));
       }
     }
   }
